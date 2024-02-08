@@ -1,0 +1,62 @@
+---
+- name: Setup AWS-Session Node.js Application
+  hosts: servers
+  become: true
+
+  tasks:
+    - name: Remove old AWS-Session directory (optional)
+      ansible.builtin.file:
+        path: /home/ubuntu/AWS-Session
+        state: absent
+
+    - name: Git clone AWS-Session repository
+      git:
+        repo: "https://github.com/dv-sharma/NodeJSDeploy.git"
+        dest: "/home/ubuntu/AWS-Session"
+
+    - name: Create and setup .env file
+      copy:
+        content: |
+          DOMAIN="ec2-44-210-112-224.compute-1.amazonaws.com:3001"
+          PORT=3001
+          STATIC_DIR="./client"
+          PUBLISHABLE_KEY=""
+          SECRET_KEY=""
+        dest: /home/ubuntu/AWS-Session/.env
+
+    - name: Set ownership and permissions for AWS-Session directory
+      ansible.builtin.file:
+        path: /home/ubuntu/AWS-Session
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+
+    - name: Install Node.js and npm
+      apt:
+        name:
+          - nodejs
+          - npm
+
+    - name: Install project dependencies using npm
+      command: npm install
+      args:
+        chdir: /home/ubuntu/AWS-Session
+
+    - name: Run npm run start
+      become_user: ubuntu
+      command: npm run start
+      args:
+        chdir: /home/ubuntu/AWS-Session
+      register: npm_output
+      async: 1000
+      poll: 0
+    - name: Pause for 30 seconds
+      pause:
+        seconds: 30
+
+
+    - name: Ensure app is running
+      shell: ps aux | grep node
+      register: app_status
+    - debug: msg={{app_status.stdout_lines}}-
