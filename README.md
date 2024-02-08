@@ -13,7 +13,7 @@ This project will help you with these job requirements :
 
 
 - Provision and configure infrastructure through automation
-- Required experience in Scripting Tools (eg PowerShell, Bash, etc)
+- Required experience in Configuration Management tools (eg PowerShell, Bash, etc)
 - Understanding of web application development, server deployment and upkeep, and general networking practices.
 
 
