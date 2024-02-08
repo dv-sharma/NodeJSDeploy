@@ -1,6 +1,5 @@
 # Deploying a Node Js Application on AWS EC2 with Ansible Automation
 
-# Deploying remote Nginx Server which hosts a static HTML website on AWS Linux (EC2) using Automation (Ansible)
 ### DESCRIPTION
 
 #### PROJECT IDEA
