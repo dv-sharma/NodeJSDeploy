@@ -8,7 +8,8 @@
 I came across a DevOps project: "Deploying Node JS application on AWS EC2" by Kunal Verma 
 In this project, we deploy Node JS application on AWS EC2 Ubuntu instance, Themanual steps can be found here: https://github.com/verma-kunal/AWS-Session .
 
-The DevOps Engineer in me saw an opportunity to add automation to it, so I used Ansible to deploy this application on AWS with a single command.
+The DevOps Engineer in me saw an opportunity to add automation to it, so I used Ansible to deploy this application on AWS with a single command. We are using an ansible playbook here to deploy this application,
+It handles the setup of environment variables needed for our application.
 This project will help you with these job requirements :
 
 
