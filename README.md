@@ -45,7 +45,7 @@ Follow this video:https://www.youtube.com/watch?v=UIaK9yZiuP0
 
 INSTANCE LOGIN COMMAND: 
 ```
-ansible-playbook -i /etc/ansible/hosts -u ubuntu playbook1.yml
+ssh -i crudandread.pem ubuntu@ec2-54-152-119-212.compute-1.amazonaws.com
 ```
 
 x
